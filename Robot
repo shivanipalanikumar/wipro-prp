@@ -1,0 +1,301 @@
+90 45 with 1/2 moves
+
+public class RobotMovement {
+	static RobotMovement obj;
+	int setMoveUnit(String instruction) {
+		if(instruction.equals("M")) {
+			return 2;
+		}
+		return 1;
+	}
+	
+	String movement(int x, int y, String curPos, String moves) {
+		int curX = Integer.parseInt(curPos.split("-")[0]);
+		int curY = Integer.parseInt(curPos.split("-")[1]);
+		String curD = curPos.split("-")[2];
+		
+		String instructions[] = moves.split(" ");
+		
+		int i,unit;
+		for(i=0;i<instructions.length;i++) {
+			if(instructions[i].equals("m") || instructions[i].equals("M")) {
+				unit=setMoveUnit(instructions[i]);
+				if(curD.equals("N")) {
+					if(curY+unit > y) {
+						break;
+					}else {
+						curY+=unit;
+					}
+				}else if(curD.equals("S")) {
+					if(curY-unit < 0) {
+						break;
+					}else {
+						curY-=unit;
+					}						
+				}else if(curD.equals("E")) {
+					if(curX+unit > x) {
+						break;
+					}else {
+						curX+=unit;
+					}
+				}else if(curD.equals("W")) {
+					if(curX-unit < 0) {
+						break;
+					}else {
+						curX-=unit;
+					}						
+				}else if(curD.equals("NE")) {
+					if(curX+unit > x || curY+unit > y) {
+						break;
+					}else {
+						curX+=unit;
+						curY+=unit;
+					}
+				}else if(curD.equals("SE")) {
+					if(curX+unit > x || curY-unit < 0) {
+						break;
+					}else {
+						curX+=unit;
+						curY-=unit;
+					}						
+				}else if(curD.equals("SW")) {
+					if(curX-unit < 0 || curY-unit < 0) {
+						break;
+					}else {
+						curX-=unit;
+						curY-=unit;
+					}
+				}else if(curD.equals("NW")) {
+					if(curX-unit < 0 || curY+unit > y) {
+						break;
+					}else {
+						curX-=unit;
+						curY+=unit;
+					}						
+				}
+			}else {
+				if(curD.equals("N")) {
+					if(instructions[i].equals("L")) {
+						curD="W";
+					}else if(instructions[i].equals("R")){
+						curD="E";
+					}else if(instructions[i].equals("l")) {
+						curD="NW";
+					}else if(instructions[i].equals("r")){
+						curD="NE";
+					}
+				}else if(curD.equals("S")) {
+					if(instructions[i].equals("L")) {
+						curD="E";
+					}else if(instructions[i].equals("R")){
+						curD="W";
+					}else if(instructions[i].equals("l")) {
+						curD="SE";
+					}else if(instructions[i].equals("r")){
+						curD="SW";
+					}
+				}else if(curD.equals("E")) {
+					if(instructions[i].equals("L")) {
+						curD="N";
+					}else if(instructions[i].equals("R")){
+						curD="S";
+					}else if(instructions[i].equals("l")) {
+						curD="NE";
+					}else if(instructions[i].equals("r")){
+						curD="SE";
+					}
+				}else if(curD.equals("W")) {
+					if(instructions[i].equals("L")) {
+						curD="S";
+					}else if(instructions[i].equals("R")){
+						curD="N";
+					}else if(instructions[i].equals("l")) {
+						curD="SW";
+					}else if(instructions[i].equals("r")){
+						curD="NW";
+					}
+				}else if(curD.equals("NE")) {
+					if(instructions[i].equals("L")) {
+						curD="NW";
+					}else if(instructions[i].equals("R")) {
+						curD="SE";
+					}else if(instructions[i].equals("l")) {
+						curD="N";
+					}else if(instructions[i].equals("r")) {
+						curD="E";
+					}
+				}else if(curD.equals("SE")) {
+					if(instructions[i].equals("L")) {
+						curD="NE";
+					}else if(instructions[i].equals("R")) {
+						curD="SW";
+					}else if(instructions[i].equals("l")) {
+						curD="E";
+					}else if(instructions[i].equals("r")) {
+						curD="S";
+					}
+				}else if(curD.equals("NW")) {
+					if(instructions[i].equals("L")) {
+						curD="SW";
+					}else if(instructions[i].equals("R")) {
+						curD="NE";
+					}else if(instructions[i].equals("l")) {
+						curD="W";
+					}else if(instructions[i].equals("r")) {
+						curD="N";
+					}
+				}else if(curD.equals("SW")) {
+					if(instructions[i].equals("L")) {
+						curD="SE";
+					}else if(instructions[i].equals("R")) {
+						curD="NW";
+					}else if(instructions[i].equals("l")) {
+						curD="S";
+					}else if(instructions[i].equals("r")) {
+						curD="W";
+					}
+				}
+			}
+		}
+		String result = curX+"-"+curY+"-"+curD;
+		if(i!=instructions.length) {
+			result+="-ER";
+		}
+		return result;
+	}
+	public static void main(String[] args) {
+		int X = 5;
+		int Y = 4;
+		String curPos="1-2-E";
+		String moves="r M l m L M r";
+		//expected output => 4-2-NE
+		obj = new RobotMovement();
+		String output = obj.movement(X,Y,curPos,moves);	
+		System.out.print(output);
+
+	}
+
+}
+
+
+----------------------------------------------------------------------------------------------------------------------
+
+
+90 45 with 1 move
+
+package test;
+import  java.util.*;
+public class My_Robot {
+
+	public static void main(String[] args) {
+		Scanner s =new Scanner(System.in);
+		int input1=s.nextInt();
+		int input2=s.nextInt();
+		String input3=s.next();
+		String input4=s.next();
+		int X = input1;
+		int Y = input2;
+		String currentPos = input3;
+		String msg = input4;
+		s.close();
+		int currX = Integer.parseInt(currentPos.split("-")[0]);
+		int currY = Integer.parseInt(currentPos.split("-")[1]);
+		String currD = currentPos.split("-")[2]; // E/W/N/S
+		String[] instructions = msg.split("-"); // M L R M M L M ...
+		StringBuilder output = new StringBuilder();
+		String ER="";
+		
+		for (int i = 0; i < instructions.length; i++) {
+			System.out.println(instructions[i] + ":: "+currX+"-"+currY+"-"+currD);
+			if (instructions[i].equals("M")) {
+				if (currD.equals("E") && (currX + 1 > X )) {
+					ER="-ER";
+					break;
+				} 
+				if (currD.equals("W") && (currX - 1 < 0 )) {
+					ER="-ER";
+					break;
+				} 
+				if (currD.equals("N") && (currY + 1 > Y )) {
+					ER="-ER";
+					break;
+				} 
+				if (currD.equals("S") && (currY - 1 < 0 )) {
+					ER="-ER";
+					break;
+				}
+				if (currD.equals("NE") && ((currX + 1 > X )||(currY + 1 > Y))) {
+					ER="-ER";
+					break;
+				} 
+				else if (currD.equals("NE")){
+					currX+=1;
+					currY+=1;
+				}
+				if (currD.equals("NW") && ((currX - 1 < 0 )||(currY + 1 > Y))){
+					ER="-ER";
+					break;
+				} 
+				else if (currD.equals("NW")){
+					currX-=1;
+					currY+=1;
+				}
+				if (currD.equals("SE") && ((currY - 1 < 0 ) ||(currX + 1 > X))) {
+					ER="-ER";
+					break;
+				} 
+				else if (currD.equals("SE")){
+					currX+=1;
+					currY-=1;
+				}
+
+				if (currD.equals("SW") && (currY - 1 < 0 ) || (currX - 1 < 0)) {
+					ER="-ER";
+					break;
+				}
+				else if (currD.equals("SW")){
+					currX-=1;
+					currY-=1;
+				}
+
+				if (currD.equals("E")) currX++;
+				else if (currD.equals("W")) currX--;
+				else if (currD.equals("N")) currY++;
+				else if (currD.equals("S")) currY--;
+			} 
+			else {
+				if (currD.equals("E") && instructions[i].equals("L"))
+				    currD = "N";
+				else if ((currD.equals("E") && instructions[i].equals("l"))||(currD.equals("NW") && instructions[i].equals("R"))||(currD.equals("SE") && instructions[i].equals("L"))||(currD.equals("N") && instructions[i].equals("r")))
+					currD ="NE";
+				else if ((currD.equals("E") && instructions[i].equals("R"))||(currD.equals("SW") && instructions[i].equals("l")))
+					currD = "S";
+				else if ((currD.equals("E") && instructions[i].equals("r"))||(currD.equals("NE") && instructions[i].equals("R"))||(currD.equals("SW") && instructions[i].equals("L"))||(currD.equals("S") && instructions[i].equals("l")))
+					currD="SE";
+				else if ((currD.equals("W") && instructions[i].equals("L"))||(currD.equals("NW") && instructions[i].equals("l"))||(currD.equals("SE") && instructions[i].equals("r")))
+					currD = "S";
+				else if ((currD.equals("w") && instructions[i].equals("l"))||(currD.equals("NW") && instructions[i].equals("L"))||(currD.equals("SE") && instructions[i].equals("R"))||(currD.equals("S") && instructions[i].equals("r")))
+					currD="SW";
+				else if ((currD.equals("w") && instructions[i].equals("r"))||(currD.equals("NE") && instructions[i].equals("L"))||(currD.equals("SW") && instructions[i].equals("R"))||(currD.equals("N") && instructions[i].equals("l")))
+					currD="NW";
+				else if ((currD.equals("W") && instructions[i].equals("R"))||(currD.equals("NE") && instructions[i].equals("l"))||(currD.equals("NW") && instructions[i].equals("r")))
+					currD = "N";
+				else if ((currD.equals("N") && instructions[i].equals("L"))||(currD.equals("SW") && instructions[i].equals("r")))
+					currD = "W";
+				else if ((currD.equals("N") && instructions[i].equals("R"))||(currD.equals("SE") && instructions[i].equals("l")))
+					currD = "E";
+				else if ((currD.equals("S") && instructions[i].equals("L"))||(currD.equals("NE") && instructions[i].equals("r")))
+					currD = "E";
+				else if (currD.equals("S") && instructions[i].equals("R"))
+					currD = "W";
+			}
+			
+			//output.delete(0, output.length());
+			
+			//System.out.println(output);
+		}
+		output.append(currX + "-" + currY + "-" + currD+""+ER);
+		System.out.println("Ans: "+output.toString());
+		
+	}
+}
