@@ -1,0 +1,285 @@
+package wipro;
+
+public class rsf {
+	int rfs1(int a, int k) {
+		String aa=a+"";
+		char[] s=aa.toCharArray();
+		String d="";
+		while(k!=s.length) {
+			d="";
+			for(int i=0;i<(s.length)-1;i++) {
+				int s1=Integer.parseInt(s[i]+"");
+				int s2=Integer.parseInt(s[i+1]+"");
+				d+=((Math.abs(s1-s2))+"");
+			}
+			System.out.println(d);
+			s=d.toCharArray();
+		}
+		return (Integer.parseInt(d));
+		
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		rsf obj=new rsf();
+		obj.rfs1(56782,2);
+	}
+
+}
+-----------------------------------------------------------------------------------------
+
+
+package wipro;
+
+import java.util.Arrays;
+public class two {
+	int arrange(int a,int b,int c,int d,int e) {
+		String s1=a+"";
+		String s2=b+"";
+		String s3=c+"";
+		String s4=d+"";
+		String s5=e+"";
+		char aa[]=s1.toCharArray();
+		char bb[]=s2.toCharArray();
+		char cc[]=s3.toCharArray();
+		char dd[]=s4.toCharArray();
+		char ee[]=s5.toCharArray();
+		Arrays.sort(aa);
+		Arrays.sort(bb);
+		Arrays.sort(cc);
+		Arrays.sort(dd);
+		Arrays.sort(ee);
+		a=Integer.parseInt((aa[0]+aa[1])+"");
+		b=Integer.parseInt((aa[0]+aa[1])+"");
+		c=Integer.parseInt((aa[0]+aa[1])+"");
+		d=Integer.parseInt((aa[0]+aa[1])+"");
+		e=Integer.parseInt((aa[0]+aa[1])+"");
+		return (a+b+c+d);
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		two obj=new two();
+		obj.arrange(128,150000,6812,3000,1018);
+	}
+
+}
+---------------------------------------------------------------------------------------------------------------------------
+
+
+package wipro;
+
+import java.util.*;
+public class three {
+	int fun(int a,int b,int c,int d) {
+		int unit=0;
+		int front=0;
+		int mid=0;
+		List<String> l=new ArrayList<String>();
+		l.add(a+"");
+		l.add(b+"");
+		l.add(c+"");
+		l.add(d+"");
+		for (String i:l) {
+			String s="";
+			
+			int x=5-i.length();
+			for(int j=0;j<x;j++) {
+				s+="0";
+			}
+			if(i.length()%2==0) { 
+				i=s+i;
+				}
+			else i=i+s;
+			char[]arr=i.toCharArray();
+			System.out.println(s);
+			System.out.println(i);
+			System.out.println("unit:"+arr[(arr.length)-1]);
+			System.out.println("front:"+arr[0]);
+			System.out.println("mid:"+arr[2]);
+			unit+=Integer.parseInt(arr[(arr.length)-1]+"");
+			front+=Integer.parseInt(arr[0]+"");
+			mid+=Integer.parseInt(arr[2]+"");
+		}
+		if(unit>9) {
+			if(unit%9==0)unit=9;
+			else unit%=9;
+		}
+		if(front>9) {
+			if(front%9==0)front=9;
+			else front%=9;
+		}
+		if(mid>9) {
+			if(mid%9==0)mid=9;
+			else mid%=9;
+		}
+		System.out.println(unit+" "+front+" "+mid);
+		return 0;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		three obj=new three();
+		obj.fun(25334,4432,642,6234);
+
+	}
+
+}
+-------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+package wipro;
+
+//import java.util.Arrays;
+
+public class four {
+	int fun(int a,int b,int c) {
+		char[]aa=(a+"").toCharArray();
+		char[]bb=(b+"").toCharArray();
+		char[]cc=(c+"").toCharArray();
+		
+		int first=Math.min(Integer.parseInt(aa[0]+""),Integer.parseInt(bb[0]+""));
+		first=Math.min(Integer.parseInt(cc[0]+""),first);
+		int sec=Math.max(Integer.parseInt(aa[1]+""),Integer.parseInt(bb[1]+""));
+		sec=Math.max(Integer.parseInt(cc[1]+""),sec);
+		int third=Math.min(Integer.parseInt(aa[2]+""),Integer.parseInt(bb[2]+""));
+		third=Math.min(Integer.parseInt(cc[2]+""),third);
+		int forth=Math.max(Integer.parseInt(aa[3]+""),Integer.parseInt(bb[3]+""));
+		forth=Math.max(Integer.parseInt(cc[3]+""),forth);
+		System.out.println(first);
+		System.out.println(sec);
+		System.out.println(third);
+		System.out.println(forth);
+		int ans=first*10+sec;
+		ans=ans*10+third;
+		ans=ans*10+forth;
+		return ans;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		four obj = new four();
+		System.out.println(obj.fun(3521, 2452, 1352));
+
+	}
+
+}
+------------------------------------------------------------------------------------------------------------------------------------------
+
+
+package wipro;
+
+
+public class five {
+	int fun(int a,int b,int c) {
+		int iter=3;
+		int ans=b;
+		int dummy=b;
+		for(int i=0;i<(a-1);i++) {
+			dummy+=c;
+			int div=iter/2;
+			ans+=((dummy-c)*div)+(dummy*(iter-div));
+			int x=((dummy-c)*div)+(dummy*(iter-div));
+			System.out.println(x);
+			iter+=2;
+		}
+		System.out.println("End");
+		return ans;
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		five obj =new five();
+		System.out.println(obj.fun(4,1,5));
+	}
+}
+---------------------------------------------------------------------------------------------------------------------
+
+
+package wipro;
+
+public class six {
+	public static int fun(int n) {
+		int b=0;
+		char arr[]=(n+"").toCharArray();
+		int len=arr.length;
+		int ans=0;
+		for(int i=0;i<len;i++) {
+			int a=b;
+			b=Integer.parseInt(arr[i]+"");
+			ans+=Math.pow(b,a);
+			System.out.println(Math.pow(b,a));
+		}
+		return ans;
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int n=582109;
+		System.out.println(fun(n));
+		
+	}
+
+	
+
+}
+---------------------------------------------------------------------------------------------------------------------------
+############*****************  person token ***********************###########
+
+package wipro;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
+
+public class personn_token {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		int input1  = 7;
+		String input2[] = {"aa","bb","cc","dd","ee","ff","gg"};
+		int input3[] = {9,89,5,0,6,65,4};
+	// 0 4 5 6 9 65 89
+		System.out.println(process_output(input1,input2,input3));
+	
+		int  input4  = 4;
+		String[] input5 = {"Priya","Sowmiya","Sam","Vidhya"};
+		int[] input6 = {9,76,8,23};
+			//8 9 23 76
+			System.out.println(process_output(input4,input5,input6));
+		}
+	
+		public static String process_output(int input1,String input2[],int input3[]) {
+			String op="";
+			int j,i,flag=0;;
+			
+			Map<Integer,String> map=new HashMap<Integer, String>();  
+	
+			for(i=0;i<input1;i++)
+				map.put(input3[i],input2[i]);
+			
+			Arrays.sort(input3);
+			
+			for(i=0;i<input1-2;i++) {
+
+				if(input3[i]+1 == input3[i+1] && input3[i]+2 == input3[i+2])
+				{
+					flag = 1;
+					break;
+				}
+			}
+			if(flag ==0)
+				return "NONE";
+			
+			j= i+2;
+	
+			op = op + map.get(input3[j--])+":";
+			op = op + map.get(input3[j--])+":";
+			op = op + map.get(input3[j]);
+		
+			return op;
+	}
+
+}
+----------------------------------------------------------------------------------------------------------------------------------------------------------------
